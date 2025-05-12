@@ -17,7 +17,7 @@ public class MailService {
     private static String number;
     private final JavaMailSender javaMailSender;
     @Value("${spring.mail.username}")
-    private static String senderEmail;
+    private String senderEmail;
 
     public MailService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
