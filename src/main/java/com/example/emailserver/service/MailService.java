@@ -58,21 +58,22 @@ public class MailService {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true); // Helper 사용
             messageHelper.setFrom(senderEmail);
             messageHelper.setTo(email);
-            messageHelper.setSubject("[Challengers] 이메일 인증 번호 발송");
+            messageHelper.setSubject("[오늘의 하루] 이메일 인증 번호 발송");
+            String body = "<html><body style='background-color: #000000; margin: 0 auto; max-width: 600px; word-break: break-word; padding: 50px 30px; color: #ffffff; font-family: sans-serif;'>";
 
-            String body = "<html><body style='background-color: #000000 !important; margin: 0 auto; max-width: 600px; word-break: break-all; padding-top: 50px; color: #ffffff;'>";
-            body += "<img class='logo' src='cid:image'>";
-            body += "<h1 style='padding-top: 50px; font-size: 30px;'>이메일 주소 인증</h1>";
-            body += "<p style='padding-top: 20px; font-size: 18px; opacity: 0.6; line-height: 30px; font-weight: 400;'>안녕하세요? Challengers 관리자 입니다.<br />";
-            body += "Challengers 서비스 사용을 위해 회원가입시 고객님께서 입력하신 이메일 주소의 인증이 필요합니다.<br />";
-            body += "하단의 인증 번호로 이메일 인증을 완료하시면, 정상적으로 Challengers 서비스를 이용하실 수 있습니다.<br />";
-            body += "항상 최선의 노력을 다하는 Challengers가 되겠습니다.<br />";
-            body += "감사합니다.</p>";
-            body += "<div class='code-box' style='margin-top: 50px; padding-top: 20px; color: #000000; padding-bottom: 20px; font-size: 25px; text-align: center; background-color: #f4f4f4; border-radius: 10px;'>" + number + "</div>";
-            body += "</body></html>";
-            messageHelper.setText(body, true);
-            ClassPathResource image = new ClassPathResource("img/challengers.png");
-            messageHelper.addInline("image", image);
+            body += "<h1 style='padding-top: 40px; font-size: 30px; margin-bottom: 30px;'>이메일 주소 인증</h1>";
+
+            body += "<p style='font-size: 18px; line-height: 32px; margin-bottom: 24px;'>안녕하세요? 오늘의 하루 관리자 입니다.</p>";
+            body += "<p style='font-size: 18px; line-height: 32px; margin-bottom: 24px;'>오늘의 하루 서비스 사용을 위해 고객님께서 입력하신 이메일 주소의 인증이 필요합니다.</p>";
+            body += "<p style='font-size: 18px; line-height: 32px; margin-bottom: 24px;'>하단의 인증 번호로 이메일 인증을 완료하시면, 정상적으로 오늘의 하루 서비스를 이용하실 수 있습니다.</p>";
+            body += "<p style='font-size: 18px; line-height: 32px; margin-bottom: 24px;'>항상 최선의 노력을 다하는 오늘의 하루가 되겠습니다.</p>";
+            body += "<p style='font-size: 18px; line-height: 32px;'>감사합니다.</p>";
+
+            body += "<div style='margin-top: 40px; padding: 20px 0; color: #000000; font-size: 25px; text-align: center; background-color: #f4f4f4; border-radius: 10px; font-weight: bold;'>" + number + "</div>";
+
+            body += "</body></html>";   messageHelper.setText(body, true);
+        //    ClassPathResource image = new ClassPathResource("img/thedayoftoday.png");
+         //   messageHelper.addInline("image", image);
         }catch (MessagingException e){
             e.printStackTrace();
         }
