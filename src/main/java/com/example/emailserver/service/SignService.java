@@ -8,11 +8,21 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SignService {
 
-    private final MailService mailService;
+    private final MainSendService mailService;
+    private final RedisService redisService;
 
     public String sendCode(SignUpRequestDto signUpRequestDto) {
         String email = signUpRequestDto.email();
-        return mailService.sendMail(email);
+        String code = mailService.sendMail(email);
+        redisService.setCode(email, code);
+        return code;
     }
 
+    public boolean verifyCode(String email, String code) {
+        String redisCode = redisService.getCode(email);
+        if (redisCode.equals(code)) {
+            return true;
+        }
+        return false;
+    }
 }

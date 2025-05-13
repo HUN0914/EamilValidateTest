@@ -6,20 +6,19 @@ import java.util.Random;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class MailService {
+public class MainSendService {
     private static String number;
     private final JavaMailSender javaMailSender;
     @Value("${spring.mail.username}")
     private String senderEmail;
 
-    public MailService(JavaMailSender javaMailSender) {
+    public MainSendService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
 
